@@ -6,13 +6,13 @@
 Summary:	Differences lists
 Summary(pl.UTF-8):	Listy różnic
 Name:		ghc-%{pkgname}
-Version:	0.6.0.1
+Version:	0.8.0.8
 Release:	1
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/dlist
 Source0:	http://hackage.haskell.org/package/%{pkgname}-%{version}/%{pkgname}-%{version}.tar.gz
-# Source0-md5:	e491b9aed316a58061de4f7751f0216b
+# Source0-md5:	2765820965532ac11c4f67d907ca0e63
 URL:		http://hackage.haskell.org/package/dlist
 BuildRequires:	ghc >= 6.12.3
 BuildRequires:	ghc-base >= 2
@@ -114,15 +114,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/HSdlist-%{version}.o
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdlist-%{version}.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdlist-%{version}-*.so
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdlist-%{version}-*.a
+%exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdlist-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/DList.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/DList.dyn_hi
 
 %if %{with prof}
 %files prof
 %defattr(644,root,root,755)
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdlist-%{version}_p.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdlist-%{version}-*_p.a
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/DList.p_hi
 %endif
 
